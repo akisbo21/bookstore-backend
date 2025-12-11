@@ -10,10 +10,9 @@ use App\Http\Controllers\StatisticsController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/books',            [BookController::class, 'index']);
-Route::post('/books',           [BookController::class, 'store']);
-Route::get('/books/{id}',       [BookController::class, 'show']);
-Route::get('/books/search',     [BookController::class, 'search']);
+Route::post('/books', [BookController::class, 'store']);
+Route::get('/books/search', [BookController::class, 'search']);
+Route::get('/books/{id}', [BookController::class, 'show']);
 
 /*
 |--------------------------------------------------------------------------
