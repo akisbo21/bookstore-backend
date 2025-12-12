@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class BookService
 {
+    private ExchangeRateService $exchangeRateService;
+
+    public function __construct(ExchangeRateService $exchangeRateService)
+    {
+        $this->exchangeRateService = $exchangeRateService;
+    }
+
     public function store(Request $request): Book
     {
         $data = $request->validate([
@@ -52,6 +59,18 @@ class BookService
                     });
             })
             ->get();
+    }
+
+    public function searchWithExchangeRate(Request $request)
+    {
+        $books = $this->search($request);
+
+        $rate = $this->exchangeRateService->fetchEurHuf()['rate'];
+
+        return $books->map(function ($book) use ($rate) {
+            $book->price_eur = round($book->price_huf / $rate, 2);
+            return $book;
+        });
     }
 
     public function delete(int $id): bool

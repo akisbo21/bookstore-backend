@@ -26,7 +26,7 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
-        return $this->bookService->search($request);
+        return $this->bookService->searchWithExchangeRate($request);
     }
 
     public function delete(int $id)
