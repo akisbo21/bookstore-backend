@@ -13,6 +13,7 @@ use App\Http\Controllers\StatisticsController;
 Route::post('/books', [BookController::class, 'store']);
 Route::get('/books/search', [BookController::class, 'search']);
 Route::get('/books/{id}', [BookController::class, 'show']);
+Route::delete('/books/{id}', [BookController::class, 'delete']);
 
 /*
 |--------------------------------------------------------------------------
