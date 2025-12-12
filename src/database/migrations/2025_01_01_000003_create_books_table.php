@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('author_id')->constrained('authors')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->date('release_date')->nullable();
-            $table->integer('price_huf');
+            $table->integer('price_huf')->index();
             $table->timestamps();
         });
     }

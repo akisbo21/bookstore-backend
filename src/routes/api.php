@@ -18,6 +18,8 @@ Route::get('/categories/autocomplete', [CategoryController::class, 'autocomplete
 
 Route::get('/exchange-rates/fetch-eur-huf', [ExchangeRateController::class, 'fetchEurHuf']);
 
-Route::get('/statistics/expensive-books',        [StatisticsController::class, 'expensiveBooks']);
-Route::get('/statistics/popular-categories',     [StatisticsController::class, 'popularCategories']);
-Route::get('/statistics/top-fantasy-and-sci-fi', [StatisticsController::class, 'topFantasyAndSciFi']);
+Route::prefix('statistics')->group(function () {
+    Route::get('/expensive-books', [\App\Http\Controllers\StatisticsController::class, 'expensiveBooks']);
+    Route::get('/popular-categories', [\App\Http\Controllers\StatisticsController::class, 'popularCategories']);
+    Route::get('/top-fantasy-and-sci-fi', [\App\Http\Controllers\StatisticsController::class, 'topFantasyAndSciFi']);
+});
